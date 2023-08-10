@@ -37,4 +37,8 @@ use App\Http\Controllers as C;
 
 // Route::get('/post/{id}', [C\PostsController::class, 'index']);
 
-Route::resource('posts', C\PostsController::class);
+// Route::resource('posts', C\PostsController::class);
+
+Route::get('/contact', [C\PostsController::class, 'contact']);
+
+Route::get('post/{id}/{name}', [C\PostsController::class, 'show_post']);
