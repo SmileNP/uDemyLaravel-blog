@@ -35,4 +35,6 @@ use App\Http\Controllers as C;
 //     return "this url is ". $url;
 // }));
 
-Route::get('/post/{id}', [C\PostsController::class, 'index']);
+// Route::get('/post/{id}', [C\PostsController::class, 'index']);
+
+Route::resource('posts', C\PostsController::class);
