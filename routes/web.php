@@ -7,6 +7,17 @@ use App\Http\Controllers as C;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
+*/
+
+Route::get('/insert', function () {
+    DB::insert('insert into blogs(title, content) values(?,?)', ['PHP with laravel', 'Laravel is the best thing that has happened to PHP']);
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
@@ -40,6 +51,6 @@ use App\Http\Controllers as C;
 
 // Route::resource('posts', C\PostsController::class);
 
-Route::get('/contact', [C\PostsController::class, 'contact']);
-
-Route::get('post/{id}/{name}', [C\PostsController::class, 'show_post']);
+//Route::get('/contact', [C\PostsController::class, 'contact']);
+//
+//Route::get('post/{id}/{name}', [C\PostsController::class, 'show_post']);
