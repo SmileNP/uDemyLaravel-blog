@@ -10,9 +10,9 @@ use App\Http\Controllers as C;
 |--------------------------------------------------------------------------
 */
 
-//Route::get('/insert', function () {
-//    DB::insert('insert into blogs(title, content) values(?,?)', ['PHP with laravel', 'Laravel is the best thing that has happened to PHP']);
-//});
+Route::get('/insert', function () {
+    DB::insert('insert into blogs(title, content) values(?,?)', ['PHP with laravel', 'Laravel is the best thing that has happened to PHP']);
+});
 
 Route::get('/read', function () {
     $results = DB::select('select * from blogs where id = ?', [1]);
@@ -26,6 +26,10 @@ Route::get('/read', function () {
 
 Route::get('/update', function () {
     return DB::update('update blogs set title = "Updated title" where id = ?', [1]);
+});
+
+Route::get('/delete', function () {
+    return DB::delete('delete from blogs where id = ?', [1]);
 });
 
 /*
