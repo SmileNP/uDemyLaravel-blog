@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers as C;
 
@@ -23,6 +24,9 @@ Route::get('/read', function () {
     return var_dump($results);
 });
 
+Route::get('/update', function () {
+    return DB::update('update blogs set title = "Updated title" where id = ?', [1]);
+});
 
 /*
 |--------------------------------------------------------------------------
