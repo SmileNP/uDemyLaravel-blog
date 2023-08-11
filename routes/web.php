@@ -5,14 +5,23 @@ use App\Http\Controllers as C;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| DATABASE Raw SQL Queries
 |--------------------------------------------------------------------------
 */
 
-Route::get('/insert', function () {
-    DB::insert('insert into blogs(title, content) values(?,?)', ['PHP with laravel', 'Laravel is the best thing that has happened to PHP']);
-});
+//Route::get('/insert', function () {
+//    DB::insert('insert into blogs(title, content) values(?,?)', ['PHP with laravel', 'Laravel is the best thing that has happened to PHP']);
+//});
 
+Route::get('/read', function () {
+    $results = DB::select('select * from blogs where id = ?', [1]);
+//    $str = '';
+//    foreach ($results as $blog) {
+//        $str = $str . $blog->title . " " . $blog->content;
+//    }
+//    return 'READ ' . $str;
+    return var_dump($results);
+});
 
 
 /*
