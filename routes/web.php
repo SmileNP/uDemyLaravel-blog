@@ -17,6 +17,10 @@ Route::get('/hasone', function () {
     return User::find(1)->blog;
 });
 
+// inverse relationship
+Route::get('/belongsto', function () {
+    return Blog::find(1)->user->name;
+});
 /*
 |--------------------------------------------------------------------------
 | ELOQUENT
