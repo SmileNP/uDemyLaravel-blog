@@ -46,4 +46,14 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Blog');
     }
+
+    public function blogs()
+    {
+        return $this->hasMany('App\Models\Blog');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
 }

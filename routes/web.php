@@ -21,6 +21,21 @@ Route::get('/hasone', function () {
 Route::get('/belongsto', function () {
     return Blog::find(1)->user->name;
 });
+
+Route::get('/hasmany', function () {
+    $user = User::find(1);
+    foreach ($user->blogs as $blog) {
+        echo $blog->title . "<br>";
+    }
+});
+
+Route::get('/manytomany', function () {
+    $user = User::find(1);
+    foreach ($user->roles as $role) {
+        echo $role->name . "<br>";
+    }
+});
+
 /*
 |--------------------------------------------------------------------------
 | ELOQUENT
