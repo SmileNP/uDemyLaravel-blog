@@ -5,6 +5,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers as C;
 
 use App\Models\Blog;
+use App\Models\User;
+
+/*
+|--------------------------------------------------------------------------
+| ELOQUENT RELATIONSHIP
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/hasone', function () {
+    return User::find(1)->blog;
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -12,46 +23,45 @@ use App\Models\Blog;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/read', function () {
-
-    $posts = Blog::all();
-
-    foreach ($posts as $post) {
-        return $post->title;
-    }
-    return null;
-});
-
-Route::get('/find', function () {
-    return Blog::find(2)->title;
-});
-
-Route::get('/findwhere', function () {
-    return Blog::where('id', 3)->orderBy('id', 'desc')->take(1)->get();
-});
-
-Route::get('/insert', function () {
-    $blog = new Blog();
-
-    $blog->title = "New Eloquent Blog";
-    $blog->content = "eloquent content";
-
-    $blog->save();
-});
-
-Route::get('/create', function () {
-    Blog::create(['title' => 'the create method', 'content' => 'WOW']);
-});
-
-Route::get('/update', function () {
-    Blog::where('id', 2)->update(['title' => 'NEW UPDATED TITLE']);
-});
-
-Route::get('/delete', function () {
-//    Blog::find(2)->delete();
-//    Blog::destroy([3, 5]);
-});
-
+//Route::get('/read', function () {
+//
+//    $posts = Blog::all();
+//
+//    foreach ($posts as $post) {
+//        return $post->title;
+//    }
+//    return null;
+//});
+//
+//Route::get('/find', function () {
+//    return Blog::find(2)->title;
+//});
+//
+//Route::get('/findwhere', function () {
+//    return Blog::where('id', 3)->orderBy('id', 'desc')->take(1)->get();
+//});
+//
+//Route::get('/insert', function () {
+//    $blog = new Blog();
+//
+//    $blog->title = "New Eloquent Blog";
+//    $blog->content = "eloquent content";
+//
+//    $blog->save();
+//});
+//
+//Route::get('/create', function () {
+//    Blog::create(['title' => 'the create method', 'content' => 'WOW']);
+//});
+//
+//Route::get('/update', function () {
+//    Blog::where('id', 2)->update(['title' => 'NEW UPDATED TITLE']);
+//});
+//
+//Route::get('/delete', function () {
+////    Blog::find(2)->delete();
+////    Blog::destroy([3, 5]);
+//});
 
 
 /*
