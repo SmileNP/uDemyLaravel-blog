@@ -6,6 +6,7 @@ use App\Http\Controllers as C;
 
 use App\Models\Blog;
 use App\Models\User;
+use App\Models\Country;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,25 @@ Route::get('/manytomany', function () {
     $user = User::find(1);
     foreach ($user->roles as $role) {
         echo $role->name . "<br>";
+    }
+});
+
+// Accessing the intermediate table / pivot table
+
+Route::get('user/pivot', function () {
+    $user = User::find(1);
+
+    foreach ($user->roles as $role) {
+        echo $role->pivot->created_at . "<br>";
+    }
+
+});
+
+Route::get('user/country', function () {
+    $country = Country::find(2);
+
+    foreach ($country->blogs as $blog) {
+        return $blog->title;
     }
 });
 

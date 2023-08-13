@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Country extends Model
 {
     use HasFactory;
 
-    public function users()
+    public function blogs()
     {
-        // inverse of many to many
-        return $this->belongsToMany('App\Models\User');
+        return $this->hasManyThrough('\App\Models\Blog', 'App\Models\User');
     }
 }
