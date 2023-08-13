@@ -39,20 +39,37 @@ Route::get('/manytomany', function () {
 
 // Accessing the intermediate table / pivot table
 
-Route::get('user/pivot', function () {
+//Route::get('user/pivot', function () {
+//    $user = User::find(1);
+//
+//    foreach ($user->roles as $role) {
+//        echo $role->pivot->created_at . "<br>";
+//    }
+//
+//});
+//
+//Route::get('user/country', function () {
+//    $country = Country::find(2);
+//
+//    foreach ($country->blogs as $blog) {
+//        return $blog->title;
+//    }
+//});
+
+
+// Polymorphic Relations
+
+Route::get('user/photos', function () {
     $user = User::find(1);
-
-    foreach ($user->roles as $role) {
-        echo $role->pivot->created_at . "<br>";
+    foreach ($user->photos as $photo) {
+        return $photo;
     }
-
 });
 
-Route::get('user/country', function () {
-    $country = Country::find(2);
-
-    foreach ($country->blogs as $blog) {
-        return $blog->title;
+Route::get('blog/photos', function () {
+    $blog = Blog::find(1);
+    foreach ($blog->photos as $photo) {
+        return $photo;
     }
 });
 
