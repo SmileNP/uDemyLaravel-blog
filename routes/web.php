@@ -7,6 +7,8 @@ use App\Http\Controllers as C;
 use App\Models\Blog;
 use App\Models\User;
 use App\Models\Country;
+use App\Models\Video;
+use App\Models\Tag;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +75,33 @@ Route::get('blog/photos', function () {
     }
 });
 
+Route::get('/blog/tag', function () {
+    $blog = Blog::find(1);
+    foreach ($blog->tags as $tag) {
+        return $tag;
+    }
+});
+
+Route::get('/video/tag', function () {
+    $video = Video::find(1);
+    foreach ($video->tags as $tag) {
+        return $tag;
+    }
+});
+
+Route::get('/tag/blog', function () {
+    $tag = Tag::find(2);
+    foreach ($tag->blogs as $blog) {
+        return $blog;
+    }
+});
+
+Route::get('/tag/video', function () {
+    $tag = Tag::find(1);
+    foreach ($tag->videos as $blog) {
+        return $blog;
+    }
+});
 /*
 |--------------------------------------------------------------------------
 | ELOQUENT
