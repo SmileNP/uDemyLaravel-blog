@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateBlogRequest;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 
@@ -37,13 +38,9 @@ class PostsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateBlogRequest $request)
     {
         //
-
-        $this->validate($request, [
-            'title' => 'required',
-        ]);
 
         Blog::create($request->all());
         return redirect('/blogs');
