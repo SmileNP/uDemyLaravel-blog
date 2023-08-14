@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Country;
 use App\Models\Video;
 use App\Models\Tag;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -223,3 +224,11 @@ use App\Models\Tag;
  */
 
 Route::resource('/blogs', PostsController::class);
+
+Route::get('/dates', function () {
+
+    $date = new DateTime('+1 week');
+    echo $date->format('m-d-Y');
+    echo "<br>";
+    echo Carbon::now()->addDays(10)->diffForHumans();
+});
