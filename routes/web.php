@@ -232,3 +232,15 @@ Route::get('/dates', function () {
     echo "<br>";
     echo Carbon::now()->addDays(10)->diffForHumans();
 });
+
+
+Route::get('/getname', function () {
+    $user = User::find(1);
+    echo $user->name;
+});
+
+Route::get('/setname', function () {
+    $user = User::find(1);
+    $user->name = "williams";
+    $user->save();
+});
