@@ -9,6 +9,8 @@ class Blog extends Model
 {
     use HasFactory;
 
+    public $directory = "/images/";
+
     protected $fillable = [
         'title',
         'content',
@@ -36,5 +38,11 @@ class Blog extends Model
     public static function scopeLatest($query)
     {
         return $query->orderBy('id', 'asc')->get();
+    }
+
+    public function getPathAttribute($value)
+    {
+
+        return $this->directory . $value;
     }
 }
