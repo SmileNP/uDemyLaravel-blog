@@ -2,19 +2,22 @@
 
 @section('content')
     <h1>EDIT {{$blog->title}} BLOG</h1>
-    <form method="post" action="/blogs/{{$blog->id}}">
+    {!! Form::model($blog, ['method'=>'PATCH', 'action'=>['\App\Http\Controllers\PostsController@update', $blog->id]]) !!}
+    {{csrf_field()}}
 
-        <input type="hidden" name="_method" value="PUT">
-        <input type="text" name="title" placeholder="Enter title" value="{{$blog->title}}">
+    {!! Form::label('title', 'Title:') !!}
+    {!! Form::text('title', null, ['class'=>'form-control']) !!}
 
-        <input type="submit" name="submit">
-        {{csrf_field()}}
-    </form>
+    {!! Form::submit('Update Post', ['class'=> "btn btn-info"]) !!}
 
-    <form method="POST" action="/blogs/{{$blog->id}}">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="delete">
-        {{csrf_field()}}
-    </form>
+    {!! Form::close() !!}
+
+
+    {!! Form::open(['method'=>'DELETE', 'action'=>['\App\Http\Controllers\PostsController@destroy', $blog->id]]) !!}
+
+    {!! Form::submit('Delete Post', ['class'=> "btn btn-danger"]) !!}
+
+    {{csrf_field()}}
+    {!! Form::close() !!}
 
 @endsection

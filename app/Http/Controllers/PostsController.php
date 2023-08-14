@@ -40,6 +40,11 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->validate($request, [
+            'title' => 'required',
+        ]);
+
         Blog::create($request->all());
         return redirect('/blogs');
     }
