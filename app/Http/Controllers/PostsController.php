@@ -41,8 +41,14 @@ class PostsController extends Controller
     public function store(CreateBlogRequest $request)
     {
         //
+        $input = $request->all();
+        if ($file = $request->file('file')) {
+            $name = $file->getClientOriginalName();
+            $file->move('images', $name);
+            $input['path'] = $name;
+        }
 
-        Blog::create($request->all());
+        Blog::create($input);
         return redirect('/blogs');
     }
 

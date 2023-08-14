@@ -14,6 +14,7 @@ class Blog extends Model
         'content',
         'user_id',
         'is_admin',
+        'path',
     ];
 
     //inverse relationship
