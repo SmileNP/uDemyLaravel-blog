@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Blog;
 
 class PostsController extends Controller
 {
@@ -14,7 +15,9 @@ class PostsController extends Controller
     public function index()
     {
         //
-        return "its working ";
+        $blogs = Blog::all();
+        return view('blogs.index', compact('blogs'));
+
     }
 
     /**
@@ -25,67 +28,79 @@ class PostsController extends Controller
     public function create()
     {
         //
-        return "I am the method that creates stuff ;)";
+        return view('blogs.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         //
+        Blog::create($request->all());
+        return redirect('/blogs');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
-        return "This is the show method yayyyyy: ". $id;
+        $blog = Blog::findOrFail($id);
+        return view('blogs.show', compact('blog'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
+        $blog = Blog::findOrFail($id);
+        return view('blogs.edit', compact('blog'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
+        $blog = Blog::findOrFail($id);
+        $blog->update($request->all());
+        return redirect('/blogs');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
+        $blog = Blog::findOrFail($id);
+        $blog->delete();
+        return redirect('/blogs');
     }
 
-    public function contact(){
+    public function contact()
+    {
 
         // $people = ['Edwin', 'Jose', 'Peter', 'Maria'];
         $people = [];
@@ -93,7 +108,8 @@ class PostsController extends Controller
         return view('contact', compact('people'));
     }
 
-    public function show_post($id, $name) {
+    public function show_post($id, $name)
+    {
         // return view('post')->with('id', $id);
         return view('post', compact('id', 'name'));
     }

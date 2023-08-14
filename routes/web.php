@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers as C;
+use App\Http\Controllers\PostsController;
 
 use App\Models\Blog;
 use App\Models\User;
@@ -16,28 +16,28 @@ use App\Models\Tag;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/hasone', function () {
-    return User::find(1)->blog;
-});
-
-// inverse relationship
-Route::get('/belongsto', function () {
-    return Blog::find(1)->user->name;
-});
-
-Route::get('/hasmany', function () {
-    $user = User::find(1);
-    foreach ($user->blogs as $blog) {
-        echo $blog->title . "<br>";
-    }
-});
-
-Route::get('/manytomany', function () {
-    $user = User::find(1);
-    foreach ($user->roles as $role) {
-        echo $role->name . "<br>";
-    }
-});
+//Route::get('/hasone', function () {
+//    return User::find(1)->blog;
+//});
+//
+//// inverse relationship
+//Route::get('/belongsto', function () {
+//    return Blog::find(1)->user->name;
+//});
+//
+//Route::get('/hasmany', function () {
+//    $user = User::find(1);
+//    foreach ($user->blogs as $blog) {
+//        echo $blog->title . "<br>";
+//    }
+//});
+//
+//Route::get('/manytomany', function () {
+//    $user = User::find(1);
+//    foreach ($user->roles as $role) {
+//        echo $role->name . "<br>";
+//    }
+//});
 
 // Accessing the intermediate table / pivot table
 
@@ -61,47 +61,47 @@ Route::get('/manytomany', function () {
 
 // Polymorphic Relations
 
-Route::get('user/photos', function () {
-    $user = User::find(1);
-    foreach ($user->photos as $photo) {
-        return $photo;
-    }
-});
-
-Route::get('blog/photos', function () {
-    $blog = Blog::find(1);
-    foreach ($blog->photos as $photo) {
-        return $photo;
-    }
-});
-
-Route::get('/blog/tag', function () {
-    $blog = Blog::find(1);
-    foreach ($blog->tags as $tag) {
-        return $tag;
-    }
-});
-
-Route::get('/video/tag', function () {
-    $video = Video::find(1);
-    foreach ($video->tags as $tag) {
-        return $tag;
-    }
-});
-
-Route::get('/tag/blog', function () {
-    $tag = Tag::find(2);
-    foreach ($tag->blogs as $blog) {
-        return $blog;
-    }
-});
-
-Route::get('/tag/video', function () {
-    $tag = Tag::find(1);
-    foreach ($tag->videos as $blog) {
-        return $blog;
-    }
-});
+//Route::get('user/photos', function () {
+//    $user = User::find(1);
+//    foreach ($user->photos as $photo) {
+//        return $photo;
+//    }
+//});
+//
+//Route::get('blog/photos', function () {
+//    $blog = Blog::find(1);
+//    foreach ($blog->photos as $photo) {
+//        return $photo;
+//    }
+//});
+//
+//Route::get('/blog/tag', function () {
+//    $blog = Blog::find(1);
+//    foreach ($blog->tags as $tag) {
+//        return $tag;
+//    }
+//});
+//
+//Route::get('/video/tag', function () {
+//    $video = Video::find(1);
+//    foreach ($video->tags as $tag) {
+//        return $tag;
+//    }
+//});
+//
+//Route::get('/tag/blog', function () {
+//    $tag = Tag::find(2);
+//    foreach ($tag->blogs as $blog) {
+//        return $blog;
+//    }
+//});
+//
+//Route::get('/tag/video', function () {
+//    $tag = Tag::find(1);
+//    foreach ($tag->videos as $blog) {
+//        return $blog;
+//    }
+//});
 /*
 |--------------------------------------------------------------------------
 | ELOQUENT
@@ -216,3 +216,10 @@ Route::get('/tag/video', function () {
 //Route::get('/contact', [C\PostsController::class, 'contact']);
 //
 //Route::get('post/{id}/{name}', [C\PostsController::class, 'show_post']);
+
+
+/*
+ * Crud Application
+ */
+
+Route::resource('/blogs', PostsController::class);

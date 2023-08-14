@@ -15,7 +15,7 @@ class AddIsAdminColumnToBlogsTable extends Migration
     {
         Schema::table('blogs', function (Blueprint $table) {
             //
-            $table->integer('is_admin')->unsigned();
+            $table->integer('is_admin')->unsigned()->default(0);
         });
     }
 
